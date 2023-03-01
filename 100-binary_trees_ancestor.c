@@ -31,5 +31,16 @@ binary_tree_t *binary_trees_ancestor(
 		}
 		pf = pf->parent;
 	}
+	while (ps)
+	{
+		pf = first->parent;
+		while (pf)
+		{
+			if (pf->n == ps->n)
+				return (pf);
+			pf = pf->parent;
+		}
+		ps = ps->parent;
+	}
 	return (NULL);
 }
