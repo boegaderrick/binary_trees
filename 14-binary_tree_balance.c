@@ -25,7 +25,7 @@ size_t binary_tree_balance(const binary_tree_t *tree)
  * height - calculates height of a binary tree
  * @tree: subject tree
  *
- * Return: heght of the tree or 0 if if tree is NULL
+ * Return: height of the tree or 0 if if tree is NULL
  */
 size_t height(const binary_tree_t *tree)
 {
