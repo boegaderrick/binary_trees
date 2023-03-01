@@ -11,16 +11,11 @@ binary_tree_t *binary_trees_ancestor(
 		const binary_tree_t *first, const binary_tree_t *second)
 {
 	binary_tree_t *pf = (binary_tree_t *)first;
-	binary_tree_t *ps = (binary_tree_t *)second, *a[1024];
+	binary_tree_t *ps = (binary_tree_t *)second, *a[20];
 	int i = 0;
 
 	if (first == NULL || second == NULL)
 		return (NULL);
-
-	/*if (pf->n == second->n)
-		return (pf);
-	if (ps->n == first->n)
-		return (ps);*/
 
 	while (pf)
 	{
