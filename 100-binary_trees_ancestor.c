@@ -12,8 +12,8 @@ binary_tree_t *binary_trees_ancestor(
 {
 	binary_tree_t *pf = first->parent, *ps = second->parent;
 
-	if (first == NULL || second == NULL)
-		return (NULL);
+	/*if (first == NULL || second == NULL)
+		return (NULL);*/
 
 	if (pf->n == second->n)
 		return (pf);
@@ -30,18 +30,6 @@ binary_tree_t *binary_trees_ancestor(
 			ps = ps->parent;
 		}
 		pf = pf->parent;
-	}
-	ps = second->parent;
-	while (ps)
-	{
-		pf = first->parent;
-		while (pf)
-		{
-			if (pf->n == ps->n)
-				return (pf);
-			pf = pf->parent;
-		}
-		ps = ps->parent;
 	}
 	return (NULL);
 }
