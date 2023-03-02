@@ -17,7 +17,10 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	while (q[f] != NULL)
 	{
 		func(q[f]->n);
-		q[++l] = q[f]->left;
-		q[++l] = q[f++]->right;
+		if (q[f]->left)
+			q[++l] = q[f]->left;
+		if (q[f]->right)
+			q[++l] = q[f]->right;
+		f++;
 	}
 }
