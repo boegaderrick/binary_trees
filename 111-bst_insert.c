@@ -17,13 +17,18 @@ bst_t *bst_insert(bst_t **tree, int value)
 	if (new == NULL)
 		return (NULL);
 
-	if (!tree || (tree && *tree == NULL))
+	/*if (!tree || (tree && *tree == NULL))
 	{
 		if (!tree)
 			tree = &new;
 		if (!*tree)
 			*tree = new;
 		return (new);
+	}*/
+	if (!*tree)
+	{
+		*tree = new;
+		return (*tree);
 	}
 	helper(*tree, new, &ignore, &done);
 	return (ignore ? NULL : new);
