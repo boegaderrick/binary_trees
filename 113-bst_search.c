@@ -25,7 +25,7 @@ bst_t *bst_search(const bst_t *tree, int value)
  */
 void search(const bst_t *tree, int value, bst_t **node)
 {
-	if (tree && !node)
+	if (tree && !*node)
 	{
 		if (value == tree->n)
 		{
