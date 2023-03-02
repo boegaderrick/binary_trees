@@ -9,7 +9,9 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *node = bst_search(root, value), *new;
+	bst_t *node, *new;
+
+	node = bst_search(root, value), *new;
 
 	if (!root || !node)
 		return (NULL);
