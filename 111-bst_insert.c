@@ -11,7 +11,7 @@ void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done);
  */
 bst_t *bst_insert(bst_t **tree, int value)
 {
-	bst_t *new = (bst_t *)binary_tree_node(NULL, value);
+	bst_t *new = binary_tree_node(NULL, value);
 	bool ignore = false, done = false;
 
 	if (new == NULL)
@@ -40,7 +40,7 @@ void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done)
 {
 	if (new->n == tree->n)
 	{
-		/*free(new);*/
+		free(new);
 		(*ignore) = true;
 	}
 
