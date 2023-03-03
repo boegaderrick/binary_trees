@@ -40,7 +40,7 @@ void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done)
 {
 	if (new->n == tree->n)
 	{
-		/*free(new);*/
+		free(new);
 		(*ignore) = true;
 	}
 
