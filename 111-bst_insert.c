@@ -14,12 +14,13 @@ void search(const bst_t *tree, int value, bst_t **node);
  */
 bst_t *bst_insert(bst_t **tree, int value)
 {
-	bst_t *new = binary_tree_node(NULL, value);
+	bst_t *new;
 	bool ignore = false, done = false;
 
 	if (b_search(*tree, value))
 		return (NULL);
 
+	new = binary_tree_node(NULL, value);
 	if (new == NULL)
 		return (NULL);
 
