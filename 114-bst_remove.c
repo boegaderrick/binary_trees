@@ -1,6 +1,6 @@
 #include "binary_trees.h"
 
-void search(const bst_t *tree, int value, bst_t **node);
+void r_search(const bst_t *tree, int value, bst_t **node);
 bst_t *bst_t_search(const bst_t *tree, int value);
 
 /**
@@ -16,6 +16,17 @@ bst_t *bst_remove(bst_t *root, int value)
 
 	if (!root || !node)
 		return (NULL);
+
+	if (!node->right && !node->left)
+	{
+		if (node->parent->left == node)
+			node->parent->left = NULL;
+		else
+			node->parent->right = NULL;
+		node->parent = NULL;
+		free(node);
+		return (root);
+	}
 
 	if (node->right && node->left)
 	{
@@ -67,17 +78,17 @@ bst_t *bst_t_search(const bst_t *tree, int value)
 {
 	bst_t *node = NULL;
 
-	search(tree, value, &node);
+	r_search(tree, value, &node);
 	return (node);
 }
 
 /**
- * search - recursive function to perform the search
+ * r_search - recursive function to perform the search
  * @tree: pointer to bst to be searched
  * @value: value contained in node to be searched for
  * @node: pointer to store node if found
  */
-void search(const bst_t *tree, int value, bst_t **node)
+void r_search(const bst_t *tree, int value, bst_t **node)
 {
 	if (tree && !*node)
 	{
@@ -88,8 +99,8 @@ void search(const bst_t *tree, int value, bst_t **node)
 		}
 
 		if (value < tree->n)
-			search(tree->left, value, node);
+			r_search(tree->left, value, node);
 		if (value > tree->n)
-			search(tree->right, value, node);
+			r_search(tree->right, value, node);
 	}
 }
