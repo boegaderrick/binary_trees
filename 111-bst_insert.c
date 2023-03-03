@@ -1,6 +1,9 @@
 #include "binary_trees.h"
 
 void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done);
+bst_t *b_search(const bst_t *tree, int value);
+void search(const bst_t *tree, int value, bst_t **node);
+
 
 /**
  * bst_insert - inserts a node into a binary search tree
@@ -13,6 +16,9 @@ bst_t *bst_insert(bst_t **tree, int value)
 {
 	bst_t *new = binary_tree_node(NULL, value);
 	bool ignore = false, done = false;
+
+	if (b_search(*tree, value))
+		return (NULL);
 
 	if (new == NULL)
 		return (NULL);
@@ -68,5 +74,45 @@ void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done)
 			new->parent = tree;
 			(*done) = true;
 		}
+	}
+}
+
+
+
+/**
+ * b_search - searches for node in binary tree
+ * @tree: tree to be searched
+ * @value: value contained in node being searched for
+ *
+ * Return: pointer to node, NULL if it doesn't exist
+ */
+bst_t *b_search(const bst_t *tree, int value)
+{
+	bst_t *node = NULL;
+
+	search(tree, value, &node);
+	return (node);
+}
+
+/**
+ * search - recursive function to perform the search
+ * @tree: pointer to bst to be searched
+ * @value: value contained in node to be searched for
+ * @node: pointer to store node if found
+ */
+void search(const bst_t *tree, int value, bst_t **node)
+{
+	if (tree && !*node)
+	{
+		if (value == tree->n)
+		{
+			*node = (bst_t *)tree;
+			return;
+		}
+
+		if (value < tree->n)
+			search(tree->left, value, node);
+		if (value > tree->n)
+			search(tree->right, value, node);
 	}
 }
