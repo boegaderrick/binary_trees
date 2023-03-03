@@ -1,6 +1,6 @@
 #include "binary_trees.h"
 
-void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done);
+void helper(bst_t *tree, bst_t *new, bool *done);
 bst_t *b_search(const bst_t *tree, int value);
 void search(const bst_t *tree, int value, bst_t **node);
 
@@ -15,7 +15,7 @@ void search(const bst_t *tree, int value, bst_t **node);
 bst_t *bst_insert(bst_t **tree, int value)
 {
 	bst_t *new;
-	bool ignore = false, done = false;
+	bool done = false;
 
 	if (b_search(*tree, value))
 		return (NULL);
@@ -32,32 +32,25 @@ bst_t *bst_insert(bst_t **tree, int value)
 			*tree = new;
 		return (new);
 	}
-	helper(*tree, new, &ignore, &done);
-	return (ignore ? NULL : new);
+	helper(*tree, new, &done);
+	return (new);
 }
 
 /**
  * helper - helper function to aid in the insertion
  * @tree: pointer to tree
  * @new: pointer to new node
- * @ignore: pointer to boolean to be modified incase a duplicate is present
  * @done: pointer to boolean that signals when to stop
  */
-void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done)
+void helper(bst_t *tree, bst_t *new, bool *done)
 {
-	if (new->n == tree->n)
-	{
-		free(new);
-		(*ignore) = true;
-	}
-
-	if (*done || *ignore)
+	if (*done)
 		return;
 
 	if (new->n > tree->n)
 	{
 		if (tree->right)
-			helper(tree->right, new, ignore, done);
+			helper(tree->right, new, done);
 		else
 		{
 			tree->right = new;
@@ -68,7 +61,7 @@ void helper(bst_t *tree, bst_t *new, bool *ignore, bool *done)
 	if (new->n < tree->n)
 	{
 		if (tree->left)
-			helper(tree->left, new, ignore, done);
+			helper(tree->left, new, done);
 		else
 		{
 			tree->left = new;
